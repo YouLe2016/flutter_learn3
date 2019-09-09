@@ -18,7 +18,23 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.pinkAccent,
 //          leading: Icon(Icons.arrow_back),
           title: Row(children: <Widget>[
-            ClipOval(child: Image.network(imgHeader, width: 32, height: 32)),
+            Stack(
+              alignment: AlignmentDirectional(1.3, -1.3),
+              children: <Widget>[
+                ClipOval(
+                  child: Image.network(imgHeader, width: 32, height: 32),
+                ),
+                Container(
+                  width: 8,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 0.5),
+                  ),
+                ),
+              ],
+            ),
             Flexible(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -77,6 +93,7 @@ class MyApp extends StatelessWidget {
                   child: Image.asset(imgBanner_local),
                 )),
             GridView.count(
+              physics: NeverScrollableScrollPhysics(),
               //水平子Widget之间间距
               crossAxisSpacing: 0,
               //垂直子Widget之间间距
@@ -197,9 +214,65 @@ class MyApp extends StatelessWidget {
                   Icon(Icons.refresh, size: 16, color: Colors.black26)
                 ],
               ),
-            )
+            ),
+            ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 8,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 16),
+                        LiveWidget(),
+                        SizedBox(width: 10),
+                        LiveWidget(),
+                        SizedBox(width: 16),
+                      ],
+                    ),
+                  );
+                })
           ],
         ),
+      ),
+    );
+  }
+}
+
+class LiveWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      flex: 1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Stack(
+            alignment: AlignmentDirectional(0, 0.9),
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(imgBanner_local),
+              ),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                crossAxisAlignment: CrossAxisAlignment.start
+                    children: <Widget>[
+                      Text("柯南1", style: TextStyle(color: Colors.white)),
+                      Text("8.5w", style: TextStyle(color: Colors.white)),
+                    ],
+                  ))
+            ],
+          ),
+          Text("名侦探柯南"),
+          Text(
+            "动漫/推理",
+            style: TextStyle(color: Colors.black26),
+          ),
+        ],
       ),
     );
   }
