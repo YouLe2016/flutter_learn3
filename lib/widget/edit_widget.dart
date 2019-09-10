@@ -31,7 +31,7 @@ class _EditAppState extends State<EditApp> {
                   ),
                   child: EditableText(
                     controller: _textEditingController,
-                    focusNode: FocusNode(debugLabel: "Look"),
+                    focusNode: FocusNode(),
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.red,
@@ -47,9 +47,15 @@ class _EditAppState extends State<EditApp> {
                 TextField(
                   decoration: InputDecoration(
                     icon: Icon(Icons.perm_identity),
+                    prefixIcon: Icon(Icons.filter_1),
+                    suffixIcon: Icon(Icons.filter_2),
+                    labelText: 'labelText',
+                    hintText: 'hintText',
                     counterText: "counterText",
                     helperText: "helperText",
-                    errorText: "errorText",
+//                    errorText: "errorText",
+                    border: InputBorder.none,
+                    errorBorder: UnderlineInputBorder()
                   ),
                 ),
                 TextFormField(),
