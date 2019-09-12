@@ -5,3 +5,6 @@ const imgBanner =
 const imgBanner_local = 'images/banner.jpg';
 const imgBanner2_gif =
     "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567848342863&di=b4424506dab90e428e1e47ab7c1a8ff9&imgtype=0&src=http%3A%2F%2Fpic4.zhimg.com%2Fv2-a55b81d542d328462e34654d600376f3_b.gif";
+
+
+const String url = "http://gank.io/api/today";
