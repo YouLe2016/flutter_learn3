@@ -1,8 +1,8 @@
-import 'dart:convert';
-
-import 'package:TestDemo/constant.dart';
-import 'package:dio/dio.dart';
+import 'package:TestDemo/provide/DioProvide.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+void main() => runApp(DioApp());
 
 class DioApp extends StatefulWidget {
   @override
@@ -13,28 +13,33 @@ class _DioAppState extends State<DioApp> {
   @override
   void initState() {
     super.initState();
-
-    loadData();
-  }
-
-  String _content = "123";
-
-  void loadData() async {
-    var dio = Dio();
-    var response = await dio.get(url);
-    var categories = response.data['category'];
-    String data = "";
-    categories.forEach((it) => data += '$it\n');
-    setState(() => _content = data);
+    print("--- initState");
+//    dioModel = DioProvide();
+//    dioModel.loadData();
   }
 
   @override
   Widget build(BuildContext context) {
+    DioProvide dioModel = ScopedModel.of<DioProvide>(context);
+    /*return ScopedModel<DioProvide>(
+      model: dioModel,
+      child: MaterialApp(
+        home: Scaffold(
+          body: Center(
+//            child: ScopedModelDescendant<DioProvide>(
+//              builder: (context, child, model) => Text(model.categories),
+//            ),
+          ),
+        ),
+      ),
+    );*/
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Text(_content),
-        ),
+//            child: ScopedModelDescendant<DioProvide>(
+//              builder: (context, child, model) => Text(model.categories),
+//            ),
+            ),
       ),
     );
   }

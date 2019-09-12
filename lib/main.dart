@@ -2,7 +2,7 @@ import 'package:TestDemo/constant.dart';
 import 'package:TestDemo/dio_study.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(DioApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
