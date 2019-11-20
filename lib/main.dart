@@ -1,5 +1,4 @@
 import 'package:TestDemo/constant.dart';
-import 'package:TestDemo/dio_study.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
