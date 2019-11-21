@@ -8,9 +8,26 @@ class FlexPage extends StatelessWidget {
         title: Text("Flex Page"),
       ),
       body: Flex(
-        direction: Axis.vertical,
+        direction: Axis.horizontal,
         children: <Widget>[
-          Text('Hello word'),
+          Container(
+            color: Colors.blue,
+            width: 30,
+            height: 100,
+          ),Expanded(
+            flex: 1,
+            child: Container(
+              height: 100.0,
+              color: Colors.red,
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: 100.0,
+              color: Colors.green,
+            ),
+          ),
         ],
       ),
     );

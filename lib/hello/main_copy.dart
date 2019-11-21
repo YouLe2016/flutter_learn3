@@ -1,11 +1,12 @@
-import 'package:TestDemo/hello/stack_page.dart';
-import 'package:TestDemo/hello/widget_page.dart';
 import 'package:flutter/material.dart';
 
+import 'animate_page.dart';
 import 'detail_page.dart';
 import 'flex_page.dart';
 import 'list_page.dart';
 import 'page2.dart';
+import 'stack_page.dart';
+import 'widget_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         'WidgetPage': (context) => WidgetPage(),
         'StackPage': (context) => StackPage(),
         'FlexPage': (context) => FlexPage(),
+        'AnimatePage': (context) => AnimatePage(),
       },
     );
   }
@@ -118,6 +120,16 @@ class _MyHomePageState extends State<MyHomePage> {
               });
             },
             child: Text("Flex & Expanded 流式布局"),
+          ),
+          FlatButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              setState(() {
+                Navigator.pushNamed(context, "AnimatePage");
+              });
+            },
+            child: Text("简单动画：淡入淡出"),
           ),
         ]),
       ),
