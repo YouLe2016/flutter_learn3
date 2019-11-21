@@ -1,12 +1,15 @@
+import 'package:TestDemo/hello/stack_page.dart';
 import 'package:TestDemo/hello/widget_page.dart';
 import 'package:flutter/material.dart';
 
 import 'detail_page.dart';
+import 'flex_page.dart';
 import 'list_page.dart';
 import 'page2.dart';
 
 void main() => runApp(MyApp());
 
+/// 2019年11月20日
 /// Hello Word
 /// 点击事件
 /// 路由、路由表、传参
@@ -27,6 +30,8 @@ class MyApp extends StatelessWidget {
         'Page2': (context) => Page2(),
         'DetailPage': (context) => DetailPage(),
         'WidgetPage': (context) => WidgetPage(),
+        'StackPage': (context) => StackPage(),
+        'FlexPage': (context) => FlexPage(),
       },
     );
   }
@@ -47,13 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Title"),
       ),
-      body: Center(
-          child: Column(
-//        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+      body: Padding(
+        padding: EdgeInsets.all(6),
+        child: ListView(children: <Widget>[
           Text(text),
           FlatButton(
             color: Colors.blue,
+            textColor: Colors.white,
             onPressed: () {
               setState(() {
                 text = "You Click ME";
@@ -63,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           FlatButton(
             color: Colors.blue,
+            textColor: Colors.white,
             onPressed: () {
               setState(() {
                 Navigator.push(
@@ -75,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           FlatButton(
             color: Colors.blue,
+            textColor: Colors.white,
             onPressed: () {
               setState(() {
                 Navigator.pushNamed(context, "Page2");
@@ -82,8 +89,38 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             child: Text("to Page2"),
           ),
-        ],
-      )),
+          FlatButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              setState(() {
+                Navigator.pushNamed(context, "WidgetPage");
+              });
+            },
+            child: Text("Widget"),
+          ),
+          FlatButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              setState(() {
+                Navigator.pushNamed(context, "StackPage");
+              });
+            },
+            child: Text("Stack & Positioned 绝对定位"),
+          ),
+          FlatButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: () {
+              setState(() {
+                Navigator.pushNamed(context, "FlexPage");
+              });
+            },
+            child: Text("Flex & Expanded 流式布局"),
+          ),
+        ]),
+      ),
     );
   }
 }
