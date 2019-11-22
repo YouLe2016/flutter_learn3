@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'animate_page.dart';
+import 'animate_page2.dart';
 import 'detail_page.dart';
 import 'flex_page.dart';
 import 'list_page.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         'StackPage': (context) => StackPage(),
         'FlexPage': (context) => FlexPage(),
         'AnimatePage': (context) => AnimatePage(),
+        'AnimatePage2': (context) => AnimatePage2(),
       },
     );
   }
