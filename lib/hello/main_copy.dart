@@ -1,3 +1,4 @@
+import 'package:FlutterDemo/widget/tabbar_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'animate_page.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(),
-      initialRoute: "HomePage",
+      initialRoute: "TabBarWidget",
       routes: {
         'HomePage': (context) => MyHomePage(),
         'ListPage': (context) => ListPage(),
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
         'FlexPage': (context) => FlexPage(),
         'AnimatePage': (context) => AnimatePage(),
         'AnimatePage2': (context) => AnimatePage2(),
+
+        // widget
+        'TabBarWidget': (context) => TabBarPage(),
       },
     );
   }

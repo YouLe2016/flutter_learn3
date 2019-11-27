@@ -55,10 +55,24 @@ class _EditAppState extends State<EditApp> {
                     helperText: "helperText",
 //                    errorText: "errorText",
                     border: InputBorder.none,
-                    errorBorder: UnderlineInputBorder()
+                    errorBorder: OutlineInputBorder()
                   ),
                 ),
-                TextFormField(),
+                Divider(),
+                TextFormField(
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.perm_identity),
+                      prefixIcon: Icon(Icons.filter_1),
+                      suffixIcon: Icon(Icons.filter_2),
+                      labelText: 'labelText',
+                      hintText: 'hintText',
+                      counterText: "counterText",
+                      helperText: "helperText",
+//                    errorText: "errorText",
+                      border: InputBorder.none,
+                      errorBorder: UnderlineInputBorder()
+                  ),
+                ),
               ],
             )),
       ),
