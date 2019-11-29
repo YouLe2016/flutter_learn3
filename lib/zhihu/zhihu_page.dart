@@ -44,6 +44,8 @@ class _ZhiHuPageState extends State<ZhiHuPage>
         bottom: TabBar(
           indicatorSize: TabBarIndicatorSize.label,
           controller: _tabController,
+          labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+          unselectedLabelStyle: TextStyle(fontSize: 14),
           tabs: <Widget>[
             Tab(text: '页面一'),
             Tab(text: '页面二'),
@@ -52,7 +54,7 @@ class _ZhiHuPageState extends State<ZhiHuPage>
         ),
       ),
       body: TabBarView(controller: _tabController, children: <Widget>[
-        generateContentList(),
+        _generateContentList(),
         Text('页面二'),
         Text('页面三'),
       ]),
@@ -60,68 +62,71 @@ class _ZhiHuPageState extends State<ZhiHuPage>
   }
 }
 
-Widget generateContentList() {
+Widget _generateContentList() {
   final list = List.generate(20, (index) {
     return Content();
   });
 
   return ListView.separated(
     itemCount: list.length,
-    separatorBuilder: (context, index) => Divider(),
+    separatorBuilder: (context, index) => SizedBox(height: 4),
     itemBuilder: (BuildContext context, int index) {
       final item = list[index];
-      return new Padding(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            new Text(
-              item.title,
-              style: new TextStyle(
-                  fontSize: 16.0,
-                  color: const Color(0xFF000000),
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Roboto"),
-            ),
-            SizedBox(height: 8),
-            new Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundImage: NetworkImage(item.avatarUrl),
-                  radius: 12,
-                ),
-                SizedBox(width: 8),
-                Text(
-                  item.nickname,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    item.description,
-                    style: TextStyle(fontSize: 12),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+      return Card(
+        child: Padding(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text(
+                item.title,
+                style: new TextStyle(
+                    fontSize: 16.0,
+                    color: const Color(0xFF000000),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Roboto"),
+              ),
+              SizedBox(height: 8),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(item.avatarUrl),
+                    radius: 12,
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Text(item.subtitle),
-            Row(
-              children: <Widget>[
-                Text('xx'),
-                Spacer(),
-                Text('xx'),
-              ],
-            )
-          ],
+                  SizedBox(width: 8),
+                  Text(
+                    item.nickname,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      item.description,
+                      style: TextStyle(fontSize: 12),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8),
+              Text(item.subtitle),
+              SizedBox(height: 8),
+              Row(
+                children: <Widget>[
+                  Text('111点赞 222评论'),
+                  Spacer(),
+                  Icon(Icons.more_horiz),
+                ],
+              )
+            ],
+          ),
+          padding: const EdgeInsets.all(16.0),
         ),
-        padding: const EdgeInsets.all(16.0),
       );
     },
   );
@@ -141,6 +146,6 @@ class Content {
     avatarUrl =
         "https://pic2.zhimg.com/d6908f8ccc66e6e0b5be4e99e52c8c36_xl.jpg";
     nickname = "乐哥哥";
-    description = "企业数字化转型咨询顾问，成长，情感，职业类问题付费咨询,知乎60万赞，100万收藏的干货创作者";
+    description = "职场萌新";
   }
 }
