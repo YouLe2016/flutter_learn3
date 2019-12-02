@@ -22,9 +22,13 @@ class _AnimatePage2State extends State<AnimatePage2>
       vsync: this,
     );
 
-    _animation = CurveTween(curve: Curves.bounceIn).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.bounceIn),
-    );
+    _animation = Tween(begin: 0.0, end: 300.0)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.bounceIn))
+          ..addListener(() {
+            setState(() {});
+          });
+
+    _controller.forward();
   }
 
   @override
@@ -37,5 +41,11 @@ class _AnimatePage2State extends State<AnimatePage2>
         child: Icon(Icons.all_inclusive, size: _animation.value),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
