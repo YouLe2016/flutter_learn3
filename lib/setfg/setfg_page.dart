@@ -3,7 +3,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SetfgWidget extends StatelessWidget {
+class Setfg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
