@@ -17,16 +17,27 @@ class Setfg extends StatelessWidget {
         child: Padding(
             padding: EdgeInsets.all(8),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+//              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Expanded(
-                  flex: 6,
+//                Expanded(
+//                  flex: 6,
+//                  child: Container(
+//                    padding: EdgeInsets.all(1),
+//                    color: Colors.black,
+//                    child: GridWidget(),
+//                  ),
+//                ),
+//                Expanded(
+//                  child: CountDownWidget(),
+//                  flex: 4,
+//                ),
+                Container(
+                  padding: EdgeInsets.all(1),
+                  color: Colors.black,
                   child: GridWidget(),
                 ),
-                Expanded(
-                  child: CountDownWidget(),
-                  flex: 4,
-                ),
+                SizedBox(height: 16),
+                CountDownWidget(),
               ],
             )),
       ),
@@ -72,6 +83,10 @@ class _GridWidgetState extends State<GridWidget>
   Widget build(BuildContext context) {
     var provider = Provider.of<SetfgProvider>(context);
     return GridView.count(
+      physics: NeverScrollableScrollPhysics(),
+      crossAxisSpacing: 1,
+      mainAxisSpacing: 1,
+      shrinkWrap: true,
       crossAxisCount: provider.size,
       children: List.generate(provider.data.length, (index) {
         return InkWell(
@@ -101,7 +116,7 @@ class _GridWidgetState extends State<GridWidget>
               style: TextStyle(fontSize: 18),
             ),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
+//              border: Border.all(color: Colors.black),
               color:
                   _curIndex == index ? _currentAnimation.value : Colors.white,
             ),

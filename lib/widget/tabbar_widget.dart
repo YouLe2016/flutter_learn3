@@ -42,4 +42,10 @@ class _TabBarPageState extends State<TabBarPage>
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 }

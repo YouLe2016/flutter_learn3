@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'bilibili.dart';
+import 'douyin/douyin_page.dart';
 import 'hello/animate_page.dart';
 import 'hello/animate_page2.dart';
 import 'hello/detail_page.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: MyHomePage(),
-//      initialRoute: "HelloPage",
+//      initialRoute: "douyin",
       routes: {
         // 三天学会flutter
         'BiliBli': (context) => BiliBiliPage(),
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         // 马友发
         'ZhihuPage': (context) => ZhiHuPage(),
         'setfg': (context) => Setfg(),
+        'douyin': (context) => DouYinPage(),
       },
     );
   }
@@ -67,7 +69,16 @@ class MyHomePage extends StatelessWidget {
                 Navigator.pushNamed(context, "HelloPage");
               },
               child: Text("Hello "),
-            ), FlatButton(
+            ),
+            FlatButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.pushNamed(context, "TabBarWidget");
+              },
+              child: Text("TabBar "),
+            ),
+            FlatButton(
               color: Colors.blue,
               textColor: Colors.white,
               onPressed: () => Navigator.pushNamed(context, "BiliBli"),
@@ -84,6 +95,12 @@ class MyHomePage extends StatelessWidget {
               textColor: Colors.white,
               onPressed: () => Navigator.pushNamed(context, "setfg"),
               child: Text("舒尔特方格"),
+            ),
+            FlatButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: () => Navigator.pushNamed(context, "douyin"),
+              child: Text("某音"),
             ),
           ],
         ),
