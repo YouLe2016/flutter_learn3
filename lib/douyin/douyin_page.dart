@@ -13,17 +13,65 @@ class DouYinPage extends StatelessWidget {
           height: 100,
           decoration: BoxDecoration(color: Colors.blueAccent),
           child: Row(
-//            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+//            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text('同城', style: TextStyle(color: Colors.white)),
               Text('首页', style: TextStyle(color: Colors.white)),
+              AddIcon(),
               Text('消息', style: TextStyle(color: Colors.white)),
               Text('我', style: TextStyle(color: Colors.white)),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class AddIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 35,
+      width: 60,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            height: 35,
+            width: 50,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.cyan,
+              ),
+            ),
+          ),
+          Positioned(
+            height: 35,
+            right: 0,
+            width: 50,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.redAccent,
+              ),
+            ),
+          ),
+          Positioned(
+            height: 35,
+            right: 2,
+            width: 56,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
     );
   }

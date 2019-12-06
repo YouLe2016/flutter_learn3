@@ -22,13 +22,13 @@ class _TabBarPageState extends State<TabBarPage>
         title: Text("TabBarWidget"),
         bottom: TabBar(
           controller: _tabController,
-          indicatorPadding: EdgeInsets.symmetric(horizontal: 12),
           indicatorColor: Colors.pinkAccent,
+//          indicatorPadding: EdgeInsets.symmetric(horizontal: 12),
           indicatorSize: TabBarIndicatorSize.label,
           tabs: <Widget>[
             Tab(icon: Icon(Icons.music_note), text: "page1"),
-            Tab(text: "page2"),
-            Tab(text: "page3"),
+            Tab(icon: Icon(Icons.library_music), text: "page2"),
+            Tab(icon: Icon(Icons.queue_music), text: "page3"),
           ],
         ),
       ),
