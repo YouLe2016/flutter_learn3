@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^2.1.16
   provider:
+  marquee:
 
 
   scoped_model: ^1.0.1
