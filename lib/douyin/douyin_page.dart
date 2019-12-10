@@ -1,5 +1,6 @@
 import 'package:FlutterDemo/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 
 class DouYinPage extends StatelessWidget {
   @override
@@ -7,12 +8,12 @@ class DouYinPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Home(),
-        decoration: BoxDecoration(color: Colors.yellowAccent),
+        decoration: BoxDecoration(color: Colors.grey[600]),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          height: 100,
-          decoration: BoxDecoration(color: Colors.blueAccent),
+          height: 60,
+          decoration: BoxDecoration(color: Colors.black),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
 //            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -32,10 +33,12 @@ class DouYinPage extends StatelessWidget {
 }
 
 getBottomTextWidget(String content, bool isSelected) {
-  return Text('$content',
-      style: isSelected
-          ? TextStyle(fontSize: 18, color: Colors.white)
-          : TextStyle(fontSize: 14, color: Colors.grey[400]));
+  return Text(
+    '$content',
+    style: isSelected
+        ? TextStyle(fontSize: 18, color: Colors.white)
+        : TextStyle(fontSize: 14, color: Colors.grey[400]),
+  );
 }
 
 class AddIcon extends StatelessWidget {
@@ -104,30 +107,19 @@ class Home extends StatelessWidget {
           bottom: 0,
           width: screenWidth * 0.7,
           height: 150,
-          child: Container(
-            child: getBottomContent(),
-            decoration: BoxDecoration(color: Colors.redAccent),
-          ),
+          child: getBottomContent(),
         ),
         Positioned(
           right: 0,
           top: screenHeight * 0.3,
           width: screenWidth * 0.25,
           height: screenHeight * 0.4,
-          child: Container(
-            child: getButtonList(),
-            decoration: BoxDecoration(color: Colors.orange),
-          ),
+          child: getButtonList(),
         ),
         Positioned(
-          right: 0,
-          bottom: 0,
-          width: screenWidth * 0.25,
-          height: screenWidth * 0.25,
-          child: Container(
-            child: RotateAlbum(),
-            decoration: BoxDecoration(color: Colors.redAccent),
-          ),
+          right: 16,
+          bottom: 32,
+          child: RotateAlbum(),
         ),
       ],
     );
@@ -159,9 +151,9 @@ getButtonList() {
           ],
         ),
       ),
-      IconText(icon: Icons.favorite,text: "999k" ),
-      IconText(icon: Icons.feedback,text: "999k" ),
-      IconText(icon: Icons.reply,text: "999k" ),
+      IconText(icon: Icons.favorite, text: "999k"),
+      IconText(icon: Icons.feedback, text: "999k"),
+      IconText(icon: Icons.reply, text: "999k"),
     ],
   );
 }
@@ -178,7 +170,10 @@ class IconText extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(icon, size: 36, color: Colors.white),
-        Text(text,style: TextStyle(color: Colors.white),),
+        Text(
+          text,
+          style: TextStyle(color: Colors.white),
+        ),
       ],
     );
   }
@@ -198,10 +193,13 @@ class _RotateAlbumState extends State<RotateAlbum>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: Duration(seconds: 4));
     _animation = RotationTransition(
       turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
-      child: Icon(Icons.music_note),
+      child: CircleAvatar(
+        backgroundImage: NetworkImage(imgHeader),
+        radius: 32,
+      ),
     );
     _controller.repeat();
   }
@@ -216,10 +214,22 @@ getBottomContent() {
   return Column(
     children: <Widget>[
       ListTile(
-        title: Text("@人民日报"),
-        subtitle: Text('放大森但撒狂风大放多法减肥塞阀发的拆哦大浮动啊放大森懂啊房东爱抚懂啊'),
+        title: Text("@人民日报", style: TextStyle(color: Colors.white)),
+        subtitle: Text(
+          '放大森但撒狂风大放多法减肥塞阀发的拆哦大浮动啊放大森懂啊房东爱抚懂啊',
+          maxLines: 3,
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-//      Marquee(text: "大反派积分卡三翻叮安排三房开怕三发碟哦撒就分开拍撒娇佛牌撒进房戳牌萨基佛牌囧啊"),
+      Container(
+        width: 210,
+        height: 30,
+        child: Marquee(
+          text: "大反派积分卡三翻叮安排三房开怕三发碟哦撒就分开拍撒娇佛牌撒进房戳牌萨基佛牌囧啊",
+          style: TextStyle(color: Colors.white),
+          crossAxisAlignment: CrossAxisAlignment.end,
+        ),
+      ),
     ],
   );
 }
@@ -240,48 +250,45 @@ class _TopBarState extends State<TopBar> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.pinkAccent),
-      child: Row(
-        children: <Widget>[
-          SizedBox(width: 8),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-            iconSize: 30,
-          ),
-          Expanded(
-            child: Center(
-              child: TabBar(
-                labelStyle: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                ),
-                unselectedLabelStyle: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey[700],
-                ),
+    return Row(
+      children: <Widget>[
+        SizedBox(width: 8),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.search, color: Colors.white),
+          iconSize: 30,
+        ),
+        Expanded(
+          child: Center(
+            child: TabBar(
+              labelStyle: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
+              unselectedLabelStyle: TextStyle(
+                fontSize: 20,
+                color: Colors.grey[700],
+              ),
 //                indicatorSize: TabBarIndicatorSize.tab,
-                indicatorColor: Colors.white,
-                isScrollable: true,
-                indicatorPadding: EdgeInsets.symmetric(horizontal: 16),
-                controller: _tabController,
-                tabs: <Widget>[
+              indicatorColor: Colors.white,
+              isScrollable: true,
+              indicatorPadding: EdgeInsets.symmetric(horizontal: 16),
+              controller: _tabController,
+              tabs: <Widget>[
 //                Text('关注'),
 //                Text('推荐'),
-                  Tab(text: '关注'),
-                  Tab(text: '推荐'),
-                ],
-              ),
+                Tab(text: '关注'),
+                Tab(text: '推荐'),
+              ],
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.live_tv),
-          ),
-          SizedBox(width: 8),
-        ],
-      ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.live_tv, color: Colors.white),
+        ),
+        SizedBox(width: 8),
+      ],
     );
   }
 }
