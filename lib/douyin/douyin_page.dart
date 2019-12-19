@@ -1,6 +1,11 @@
 import 'package:FlutterDemo/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:marquee/marquee.dart';
+import 'package:provider/provider.dart';
+
+import 'bottom_sheet.dart';
+import 'recommend_provider.dart';
 
 class DouYinPage extends StatelessWidget {
   @override
@@ -8,7 +13,7 @@ class DouYinPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Home(),
-        decoration: BoxDecoration(color: Colors.grey[600]),
+        decoration: BoxDecoration(color: Colors.black),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -96,7 +101,14 @@ class Home extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Stack(
+//      alignment: AlignmentDirectional.center,
       children: <Widget>[
+        Container(
+          height: screenHeight,
+          child: Image.network(
+            "https://ws1.sinaimg.cn/large/0065oQSqly1fuh5fsvlqcj30sg10onjk.jpg",
+          ),
+        ),
         Positioned(
           top: 0,
           height: 96,
@@ -114,7 +126,7 @@ class Home extends StatelessWidget {
           top: screenHeight * 0.3,
           width: screenWidth * 0.25,
           height: screenHeight * 0.4,
-          child: getButtonList(),
+          child: getButtonList(context),
         ),
         Positioned(
           right: 16,
@@ -126,7 +138,7 @@ class Home extends StatelessWidget {
   }
 }
 
-getButtonList() {
+getButtonList(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: <Widget>[
@@ -151,8 +163,14 @@ getButtonList() {
           ],
         ),
       ),
-      IconText(icon: Icons.favorite, text: "999k"),
-      IconText(icon: Icons.feedback, text: "999k"),
+      IconText(icon: Icons.favorite, color: Colors.red, text: "999k"),
+//      IconText(icon: Icons.feedback, text: "999k"),
+      InkWell(
+        child: IconText(icon: Icons.feedback, text: "999k"),
+        onTap: () {
+          showBottomSheet(context);
+        },
+      ),
       IconText(icon: Icons.reply, text: "999k"),
     ],
   );
@@ -160,16 +178,17 @@ getButtonList() {
 
 class IconText extends StatelessWidget {
   final IconData icon;
+  final Color color;
   final String text;
 
-  const IconText({Key key, this.icon, this.text}) : super(key: key);
+  const IconText({Key key, this.icon, this.color, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(icon, size: 36, color: Colors.white),
+        Icon(icon, size: 36, color: color ?? Colors.white),
         Text(
           text,
           style: TextStyle(color: Colors.white),
@@ -208,6 +227,22 @@ class _RotateAlbumState extends State<RotateAlbum>
   Widget build(BuildContext context) {
     return _animation;
   }
+}
+
+showBottomSheet(BuildContext context) {
+  print('sssss');
+  // 底部弹框的方法
+  showModalBottomSheet(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    context: context,
+//    builder: (context) => Text('sss'),
+    builder: (context) => MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => RecommendProvider()),
+      ],
+      child: ReplyFull(),
+    ),
+  );
 }
 
 getBottomContent() {

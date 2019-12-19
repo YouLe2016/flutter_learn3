@@ -95,7 +95,7 @@ class _GridWidgetState extends State<GridWidget>
             provider.startTimer();
             if (provider.data[_curIndex] == provider.curNum) {
               _currentAnimation = _animation;
-              if (provider.curNum++ == 16) {
+              if (provider.curNum++ == provider.size *provider.size) {
                 provider.stopTimer();
                 Scaffold.of(context).showSnackBar(
                   SnackBar(
