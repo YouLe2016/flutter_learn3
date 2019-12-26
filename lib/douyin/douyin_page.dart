@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
 
+import 'animate_positive_icon.dart';
 import 'bottom_sheet.dart';
 import 'recommend_provider.dart';
 
@@ -100,95 +101,131 @@ class Home extends StatelessWidget {
     // 必须在MaterialApp的下面一层获取
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    return Stack(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => RecommendProvider()),
+      ],
+      child: Stack(
 //      alignment: AlignmentDirectional.center,
+        children: <Widget>[
+          Container(
+            height: screenHeight,
+            child: Image.network(
+              "https://ws1.sinaimg.cn/large/0065oQSqly1fuh5fsvlqcj30sg10onjk.jpg",
+            ),
+          ),
+          Positioned(
+            top: 0,
+            height: 96,
+            width: screenWidth,
+            child: TopBar(),
+          ),
+          Positioned(
+            bottom: 0,
+            width: screenWidth * 0.7,
+            height: 150,
+            child: getBottomContent(),
+          ),
+          Positioned(
+            right: 0,
+            top: screenHeight * 0.3,
+            width: screenWidth * 0.25,
+            height: screenHeight * 0.4,
+            child: ButtonList(),
+          ),
+          Positioned(
+            right: 16,
+            bottom: 32,
+            child: RotateAlbum(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ButtonList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    double rpx = MediaQuery.of(context).size.width / 750;
+    RecommendProvider provider = Provider.of<RecommendProvider>(context);
+
+    double iconSize = 55 * rpx;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         Container(
-          height: screenHeight,
-          child: Image.network(
-            "https://ws1.sinaimg.cn/large/0065oQSqly1fuh5fsvlqcj30sg10onjk.jpg",
+          height: 60,
+          child: Stack(
+            children: <Widget>[
+              CircleAvatar(
+                backgroundImage: NetworkImage(imgHeader),
+                radius: 24,
+              ),
+              Positioned(
+                bottom: 0,
+                left: 14,
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(2),
+                  child: Icon(Icons.add, size: 16, color: Colors.white),
+                ),
+              ),
+            ],
           ),
         ),
-        Positioned(
-          top: 0,
-          height: 96,
-          width: screenWidth,
-          child: TopBar(),
+        IconButton(
+          padding: EdgeInsets.all(0),
+          iconSize: iconSize,
+          icon: IconText(
+            icon: provider.mainInfo.ifFaved
+                ? AnimatePositiveIcon(
+                    iconSize,
+                    startColor: Colors.grey[100],
+                    endColor: Colors.red,
+                  )
+                : AnimateNegativeIcon(
+                    iconSize,
+                    startColor: Colors.red,
+                    endColor: Colors.grey[100],
+                  ),
+            text: provider.mainInfo.favCount.toString(),
+          ),
+          onPressed: () {
+            provider.tapFav();
+          },
         ),
-        Positioned(
-          bottom: 0,
-          width: screenWidth * 0.7,
-          height: 150,
-          child: getBottomContent(),
+        InkWell(
+          child: IconText(
+              icon: Icon(Icons.feedback, size: iconSize, color: Colors.white),
+              text: "999k"),
+          onTap: () {
+            showBottomSheet(context);
+          },
         ),
-        Positioned(
-          right: 0,
-          top: screenHeight * 0.3,
-          width: screenWidth * 0.25,
-          height: screenHeight * 0.4,
-          child: getButtonList(context),
-        ),
-        Positioned(
-          right: 16,
-          bottom: 32,
-          child: RotateAlbum(),
-        ),
+        IconText(
+            icon: Icon(Icons.reply, size: iconSize, color: Colors.white),
+            text: "999k"),
       ],
     );
   }
 }
 
-getButtonList(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: <Widget>[
-      Container(
-        height: 60,
-        child: Stack(
-          children: <Widget>[
-            CircleAvatar(
-              backgroundImage: NetworkImage(imgHeader),
-              radius: 24,
-            ),
-            Positioned(
-              bottom: 0,
-              left: 14,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.red, borderRadius: BorderRadius.circular(10)),
-                padding: EdgeInsets.all(2),
-                child: Icon(Icons.add, size: 16, color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-      ),
-      IconText(icon: Icons.favorite, color: Colors.red, text: "999k"),
-//      IconText(icon: Icons.feedback, text: "999k"),
-      InkWell(
-        child: IconText(icon: Icons.feedback, text: "999k"),
-        onTap: () {
-          showBottomSheet(context);
-        },
-      ),
-      IconText(icon: Icons.reply, text: "999k"),
-    ],
-  );
-}
-
 class IconText extends StatelessWidget {
-  final IconData icon;
-  final Color color;
+  final Widget icon;
   final String text;
 
-  const IconText({Key key, this.icon, this.color, this.text}) : super(key: key);
+  const IconText({Key key, this.icon, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(icon, size: 36, color: color ?? Colors.white),
+        icon,
         Text(
           text,
           style: TextStyle(color: Colors.white),
@@ -233,16 +270,9 @@ showBottomSheet(BuildContext context) {
   print('sssss');
   // 底部弹框的方法
   showModalBottomSheet(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    context: context,
-//    builder: (context) => Text('sss'),
-    builder: (context) => MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => RecommendProvider()),
-      ],
-      child: ReplyFull(),
-    ),
-  );
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      context: context,
+      builder: (context) => ReplyFull());
 }
 
 getBottomContent() {
