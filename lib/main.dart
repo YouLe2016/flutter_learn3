@@ -1,6 +1,8 @@
+import 'package:FlutterDemo/register/register_demo.dart';
 import 'package:flutter/material.dart';
 
 import 'bilibili.dart';
+import 'component/main_button.dart';
 import 'douyin/douyin_page.dart';
 import 'hello/animate_page.dart';
 import 'hello/animate_page2.dart';
@@ -25,6 +27,8 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
 //      initialRoute: "douyin",
       routes: {
+        '/regiter_page': (context) => RegisterDemo(),
+
         // 三天学会flutter
         'BiliBli': (context) => BiliBiliPage(),
 
@@ -70,14 +74,8 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text("Hello "),
             ),
-            FlatButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.pushNamed(context, "TabBarWidget");
-              },
-              child: Text("TabBar "),
-            ),
+            MainButton(text: "RegisterDemo", routeName: "/regiter_page"),
+            MainButton(text: "TabBar ", routeName: "TabBarWidget"),
             FlatButton(
               color: Colors.blue,
               textColor: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:FlutterDemo/widget/edit_widget.dart';
 import 'package:flutter/material.dart';
 
 class WidgetPage extends StatelessWidget {
@@ -20,6 +21,9 @@ class WidgetPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontFamily: "Roboto"),
             ),
+            Divider(),
+            Text('TextField'),
+            EditWidget(),
             Divider(),
             Text('button'),
             Column(
