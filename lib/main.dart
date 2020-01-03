@@ -1,4 +1,6 @@
 import 'package:FlutterDemo/register/register_demo.dart';
+import 'package:FlutterDemo/widget/container/padding_widget.dart';
+import 'package:FlutterDemo/widget/widget_page.dart' as widget;
 import 'package:flutter/material.dart';
 
 import 'bilibili.dart';
@@ -14,6 +16,8 @@ import 'hello/page2.dart';
 import 'hello/stack_page.dart';
 import 'hello/widget_page.dart';
 import 'setfg/setfg_page.dart';
+import 'widget/container/constrained_box_widget.dart';
+import 'widget/container/decorated_box_widget.dart';
 import 'widget/tabbar_widget.dart';
 import 'zhihu/zhihu_page.dart';
 
@@ -27,6 +31,12 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
 //      initialRoute: "douyin",
       routes: {
+        // widget
+        '/widget_page': (context) => widget.WidgetPage(),
+        '/padding_widget': (context) => PaddingWidget(),
+        '/constrained_box_widget': (context) => ConstrainedBoxWidget(),
+        '/decorated_box_widget': (context) => DecoratedBoxWidget(),
+
         '/regiter_page': (context) => RegisterDemo(),
 
         // 三天学会flutter
@@ -74,6 +84,7 @@ class MyHomePage extends StatelessWidget {
               },
               child: Text("Hello "),
             ),
+            MainButton(text: "Widget", routeName: "/widget_page"),
             MainButton(text: "RegisterDemo", routeName: "/regiter_page"),
             MainButton(text: "TabBar ", routeName: "TabBarWidget"),
             FlatButton(

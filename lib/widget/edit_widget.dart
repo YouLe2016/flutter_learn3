@@ -31,27 +31,6 @@ class _EditWidgetState extends State<EditWidget> {
       padding: EdgeInsets.all(14),
       child: Column(
         children: <Widget>[
-//          Container(
-//            padding: EdgeInsets.all(8),
-//            decoration: BoxDecoration(
-//              border: Border.all(color: Colors.blue),
-//              borderRadius: BorderRadius.circular(5),
-//            ),
-//            child: EditableText(
-//              controller: _textEditingController,
-//              focusNode: FocusNode(),
-//              style: TextStyle(
-//                fontSize: 16,
-//                color: Colors.red,
-//              ),
-//              cursorColor: Colors.blue,
-//              backgroundCursorColor: Colors.green,
-//              onChanged: (text) {
-//                debugPrint(text);
-////                  debugPrint(_controller.text);
-//              },
-//            ),
-//          ),
           TextField(
             controller: _textEditingController,
             // 监视文本字段的值的变化与提交
