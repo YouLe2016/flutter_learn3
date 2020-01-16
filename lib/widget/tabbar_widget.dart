@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// 也可以使用DefaultTabController 实现
 class TabBarPage extends StatefulWidget {
   @override
   _TabBarPageState createState() => _TabBarPageState();

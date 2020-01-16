@@ -11,9 +11,7 @@ class _RegisterDemoState extends State<RegisterDemo> {
 
   void submitRegisterForm() {
     registerFormKey.currentState.save();
-    if (registerFormKey.currentState.validate()) {
-
-    }
+    if (registerFormKey.currentState.validate()) {}
   }
 
   String validateUsername(String value) {

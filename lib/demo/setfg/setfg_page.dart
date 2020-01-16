@@ -1,7 +1,8 @@
-import 'package:FlutterDemo/setfg/setfg_provider.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'setfg_provider.dart';
 
 class Setfg extends StatelessWidget {
   @override
@@ -95,7 +96,7 @@ class _GridWidgetState extends State<GridWidget>
             provider.startTimer();
             if (provider.data[_curIndex] == provider.curNum) {
               _currentAnimation = _animation;
-              if (provider.curNum++ == provider.size *provider.size) {
+              if (provider.curNum++ == provider.size * provider.size) {
                 provider.stopTimer();
                 Scaffold.of(context).showSnackBar(
                   SnackBar(

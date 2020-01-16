@@ -1,11 +1,14 @@
-import 'package:FlutterDemo/register/register_demo.dart';
 import 'package:FlutterDemo/widget/container/padding_widget.dart';
+import 'package:FlutterDemo/widget/layout/align_widget.dart';
 import 'package:FlutterDemo/widget/widget_page.dart' as widget;
 import 'package:flutter/material.dart';
 
 import 'bilibili.dart';
 import 'component/main_button.dart';
-import 'douyin/douyin_page.dart';
+import 'demo/douyin/douyin_page.dart';
+import 'demo/register_demo.dart';
+import 'demo/setfg/setfg_page.dart';
+import 'demo/zhihu/zhihu_page.dart';
 import 'hello/animate_page.dart';
 import 'hello/animate_page2.dart';
 import 'hello/detail_page.dart';
@@ -15,11 +18,9 @@ import 'hello/main_copy.dart';
 import 'hello/page2.dart';
 import 'hello/stack_page.dart';
 import 'hello/widget_page.dart';
-import 'setfg/setfg_page.dart';
 import 'widget/container/constrained_box_widget.dart';
 import 'widget/container/decorated_box_widget.dart';
 import 'widget/tabbar_widget.dart';
-import 'zhihu/zhihu_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
 //      initialRoute: "douyin",
       routes: {
         // widget
+        '/align_widget': (context) => AlignWidget(),
         '/widget_page': (context) => widget.WidgetPage(),
         '/padding_widget': (context) => PaddingWidget(),
         '/constrained_box_widget': (context) => ConstrainedBoxWidget(),

@@ -64,6 +64,7 @@ class _HelloPageState extends State<HelloPage> {
             textColor: Colors.white,
             onPressed: () {
               setState(() {
+                // 也可以用构造函数传参
                 Navigator.pushNamed(context, "WidgetPage");
               });
             },
@@ -104,7 +105,6 @@ class _HelloPageState extends State<HelloPage> {
     );
   }
 }
-
 
 /*class _HelloPageState extends State<HelloPage>
     with SingleTickerProviderStateMixin {
@@ -258,4 +258,3 @@ class _HelloPageState extends State<HelloPage> {
     );
   }
 }*/
-
